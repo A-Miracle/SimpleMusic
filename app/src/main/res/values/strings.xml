@@ -1,0 +1,89 @@
+<resources>
+    <string name="app_name">可可音乐</string>
+    <string name="label_scan">扫描歌曲</string>
+    <string name="label_setting">设置</string>
+
+    <string name="title_scan_icon">&#xe608;</string>
+    <string name="def_artist_icon">&#xe61c;</string>
+    <string name="bar_pre_icon">&#xe610;</string>
+    <string name="bar_next_icon">&#xe600;</string>
+    <string name="bar_play_icon">&#xe6c5;</string>
+    <string name="bar_pause_icon">&#xe62a;</string>
+
+    <string name="mode_random_def_icon">&#xe6f1;</string>
+    <string name="mode_list_def_icon">&#xe609;</string>
+    <string name="mode_single_def_icon">&#xe61f;</string>
+    <string name="mode_cycle_def_icon">&#xe688;</string>
+    <string name="play_def_icon">&#xe6fe;</string>
+    <string name="pause_def_icon">&#xe682;</string>
+    <string name="pre_def_icon">&#xe607;</string>
+    <string name="next_def_icon">&#xe627;</string>
+    <string name="menu_button_icon">&#xe6a3;</string>
+
+    <string name="copyright">Copyright © 2017&#045;%d prodigal</string>
+    <string name="label_stop">停止</string>
+    <string name="label_pause">暂停</string>
+    <string name="label_play">播放</string>
+    <string name="label_previous">上一首</string>
+    <string name="label_next">下一首</string>
+
+    <string name="color_palette">调色板</string>
+    <string name="color_done">完成</string>
+    <string name="color_cancel">取消</string>
+    <string name="color_back">返回</string>
+    <string name="color_custom">自定义</string>
+    <string name="color_presets">预设</string>
+    <string name="color_sub">颜色</string>
+
+    <string name="dark_theme">夜间模式</string>
+    <string name="dark_theme_summary">应用夜间模式到整个应用</string>
+    <string name="primary_color">主题色</string>
+    <string name="primary_color_summary">应用的主颜色</string>
+    <string name="accent_color">部分视图颜色</string>
+    <string name="accent_color_summary">应用的部分视图颜色</string>
+    <string name="primary_text_color">主文本颜色</string>
+    <string name="primary_text_color_summary">改变主文本颜色</string>
+    <string name="secondary_text_color">二级文本颜色</string>
+    <string name="secondary_text_color_summary">改变二级文本颜色</string>
+    <string name="reset">重置颜色</string>
+    <string name="reset_summary">重置以上自定义颜色为系统默认</string>
+    <string name="skin">壁纸</string>
+    <string name="skin_summary">设置壁纸</string>
+    <string name="pendant_snow">挂件 - 飘雪</string>
+    <string name="pendant_snow_summary_off">首页模拟飘雪动画关闭</string>
+    <string name="pendant_snow_summary_on">首页模拟飘雪动画开启</string>
+
+    <string name="lrc_high_light">当前播放位置的颜色</string>
+    <string name="lrc_default">默认字体颜色</string>
+    <string name="lrc_hint">提示语颜色</string>
+    <string name="lrc_indicator">指示器颜色</string>
+    <string name="lrc_drag">当前拖动位置的颜色</string>
+
+    <string name="lyric_font_size_decrease_icon">&#xe6f6;</string>
+    <string name="lyric_font_size_increase_icon">&#xe6f9;</string>
+
+    <!--壁纸-->
+    <string name="custom">自定义</string>
+    <string name="long_press_delete">长按删除</string>
+    <string name="cannot_delete_hint">当前壁纸正在使用中, 不能被删除!</string>
+    <string name="cannot_custom_hint">自定义壁纸已超限, 请删除部分再操作!</string>
+
+    <!--module 图片选择-->
+    <string name="tip_take_photo">拍摄照片</string>
+    <string name="folder_all">所有照片</string>
+    <string name="permission_rationale_write_storage">保存拍照图片需要您提供写存储权限</string>
+    <string name="error_image_not_exist">图片错误</string>
+    <string name="msg_no_camera">没有系统相机</string>
+    <string name="permission_dialog_title">权限拒绝</string>
+    <string name="permission_dialog_ok">好</string>
+    <string name="permission_dialog_cancel">拒绝</string>
+    <string name="msg_amount_limit">已经达到最高选择数量</string>
+    <string name="image">图片</string>
+    <string name="action_done">完成</string>
+    <string name="action_preview">预览</string>
+    <string name="photo_unit">张</string>
+
+    <!--裁剪-->
+    <string name="corp">裁剪</string>
+    <string name="to_screen_ratio">按当前屏幕比例</string>
+</resources>

@@ -1,5 +1,5 @@
 # Built application files
-*.apk
+#*.apk
 *.ap_
 
 # Files for the ART/Dalvik VM
@@ -53,3 +53,4 @@ google-services.json
 freeline.py
 freeline/
 freeline_project_description.json
+/.idea

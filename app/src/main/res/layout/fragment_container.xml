@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.ContainerFragment">
+
+    <com.ctao.music.ui.widget.SongRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@null"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
+
+    <TextView
+        android:id="@+id/tv_dialog"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:background="@drawable/sidebar_background"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:visibility="gone"
+        tools:text="A"
+        tools:visibility="visible" />
+
+    <com.ctao.music.ui.widget.SideBar
+        android:id="@+id/sidebar"
+        android:layout_width="27dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right|bottom" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/def_bar_title_color"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="3dp"
+        android:layout_marginRight="30dp"
+        android:src="@mipmap/ic_position"
+        android:tint="?colorPrimary"
+        android:visibility="gone"
+        app:backgroundTint="?android:windowBackground"
+        app:fabSize="mini"
+        tools:visibility="visible" />
+</FrameLayout>

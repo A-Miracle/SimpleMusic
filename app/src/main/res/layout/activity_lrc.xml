@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".ui.LrcActivity">
+
+    <include layout="@layout/view_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.ctao.music.ui.widget.AViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="10000"
+            android:overScrollMode="never" />
+
+        <com.ctao.music.ui.widget.IndicatorLayout
+            android:id="@+id/il_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#0E000000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="31dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:id="@+id/songProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:text="00:00"
+                android:tag="text_secondary"
+                android:textColor="@color/def_bar_title_color"
+                android:textSize="12dp" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="100"
+                android:progress="0"
+                android:secondaryProgress="0"
+                android:tag="tint_accent_color"/>
+
+            <TextView
+                android:id="@+id/songSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:text="00:00"
+                android:tag="text_secondary"
+                android:textColor="@color/def_bar_title_color"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.ctao.music.ui.widget.IconTextView
+                android:id="@+id/bt_pattern"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:padding="5dp"
+                android:text="@string/mode_cycle_def_icon"
+                android:tag="text_secondary"
+                android:textColor="@color/def_bar_title_color"
+                android:textSize="36dp" />
+
+            <com.ctao.music.ui.widget.IconTextView
+                android:id="@+id/bt_pre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/bt_play_pause"
+                android:padding="12dp"
+                android:text="@string/bar_pre_icon"
+                android:tag="text_secondary"
+                android:textColor="@color/def_bar_title_color"
+                android:textSize="22dp" />
+
+            <com.ctao.music.ui.widget.IconTextView
+                android:id="@+id/bt_play_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="5dp"
+                android:text="@string/play_def_icon"
+                android:tag="text_secondary"
+                android:textColor="@color/def_bar_title_color"
+                android:textSize="52dp" />
+
+            <com.ctao.music.ui.widget.IconTextView
+                android:id="@+id/bt_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/bt_play_pause"
+                android:padding="12dp"
+                android:text="@string/bar_next_icon"
+                android:tag="text_secondary"
+                android:textColor="@color/def_bar_title_color"
+                android:textSize="22dp" />
+
+            <com.ctao.music.ui.widget.IconTextView
+                android:id="@+id/bt_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:padding="5dp"
+                android:text="@string/menu_button_icon"
+                android:tag="text_secondary"
+                android:textColor="@color/def_bar_title_color"
+                android:textSize="36dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.afollestad.appthemeengine.prefs.ATESwitchPreference
+        android:defaultValue="false"
+        android:key="dark_theme"
+        android:persistent="true"
+        android:summary="@string/dark_theme_summary"
+        android:title="@string/dark_theme"
+        android:widgetLayout="@layout/ate_preference_checkbox"
+        app:ateKey_pref_switch="?ate_key" />
+
+    <com.afollestad.appthemeengine.prefs.ATEColorPreference
+        android:key="primary_color"
+        android:persistent="false"
+        android:summary="@string/primary_color_summary"
+        android:title="@string/primary_color"
+        app:ateKey_pref_color="?ate_key" />
+
+    <com.afollestad.appthemeengine.prefs.ATEColorPreference
+        android:key="accent_color"
+        android:persistent="false"
+        android:summary="@string/accent_color_summary"
+        android:title="@string/accent_color"
+        app:ateKey_pref_color="?ate_key" />
+
+    <com.afollestad.appthemeengine.prefs.ATEColorPreference
+        android:key="text_primary"
+        android:persistent="false"
+        android:summary="@string/primary_text_color_summary"
+        android:title="@string/primary_text_color"
+        app:ateKey_pref_color="?ate_key" />
+
+    <com.afollestad.appthemeengine.prefs.ATEColorPreference
+        android:key="text_secondary"
+        android:persistent="false"
+        android:summary="@string/secondary_text_color_summary"
+        android:title="@string/secondary_text_color"
+        app:ateKey_pref_color="?ate_key" />
+
+    <com.ctao.music.ui.prefs.ATEPreference
+        android:key="reset"
+        android:persistent="false"
+        android:summary="@string/reset_summary"
+        android:title="@string/reset"
+        app:ateKey_pref="?ate_key" />
+
+    <com.ctao.music.ui.prefs.ATEPreference
+        android:key="skin"
+        android:persistent="false"
+        android:summary="@string/skin_summary"
+        android:title="@string/skin"
+        app:ateKey_pref="?ate_key" />
+
+    <com.ctao.music.ui.prefs.ATEPreference
+        android:key="pendant_snow"
+        android:persistent="false"
+        android:summary="@string/pendant_snow_summary_off"
+        android:title="@string/pendant_snow"
+        app:ateKey_pref="?ate_key" />
+
+</PreferenceScreen>

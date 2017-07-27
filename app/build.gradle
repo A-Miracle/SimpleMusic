@@ -1,0 +1,112 @@
+import java.text.SimpleDateFormat
+
+apply plugin: 'com.android.application'
+
+//加载签名配置的文件
+Properties props = new Properties()
+props.load(new FileInputStream(file("signature.properties")))
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "com.ctao.music"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi' , 'armeabi-v7a' , 'arm64-v8a' //, 'x86', 'x86_64'
+        }
+    }
+
+    signingConfigs {
+
+        debug {
+            keyAlias props['KEY_ALIAS']
+            keyPassword props['KEY_PASSWORD']
+            storeFile file(props['KEYSTORE_FILE'])
+            storePassword props['KEYSTORE_PASSWORD']
+        }
+
+        release { // 设置release的签名信息
+            keyAlias props['KEY_ALIAS']
+            keyPassword props['KEY_PASSWORD']
+            storeFile file(props['KEYSTORE_FILE'])
+            storePassword props['KEYSTORE_PASSWORD']
+        }
+    }
+
+    buildTypes {
+        debug{
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            zipAlignEnabled true
+            debuggable true
+            jniDebuggable true
+            applicationIdSuffix ".debug"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "BUGLY_DEBUG", "true"
+            versionNameSuffix buildTime(" - yyyy-MM-dd HH:mm")
+        }
+
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true // 是否混淆
+            zipAlignEnabled true // 采用align进行优化
+            debuggable false // debug模式
+            jniDebuggable false // jni debug模式
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "BUGLY_DEBUG", "false" // 是否输出LOG信息
+        }
+    }
+}
+
+def buildTime(String format) {
+    def df = new SimpleDateFormat(format)
+    df.setTimeZone(TimeZone.getDefault())
+    return df.format(new Date())
+}
+
+repositories {
+    mavenCentral() // jcenter() works as well because it pulls from Maven Central
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
+    compile 'com.android.support:appcompat-v7:' + rootProject.ext.supportLibraryVersion
+    compile 'com.android.support:support-v4:' + rootProject.ext.supportLibraryVersion
+    testCompile 'junit:junit:4.12'
+    compile project(':baselib')
+
+    // The third party
+    compile 'org.greenrobot:eventbus:3.0.0' //Proguard
+    compile 'com.jakewharton:butterknife:8.6.0' //No Proguard
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    compile 'com.afollestad.material-dialogs:core:0.9.4.5' //No Proguard
+    compile 'com.afollestad.material-dialogs:commons:0.9.4.5'
+    compile 'com.github.bumptech.glide:glide:3.7.0' //Proguard
+//    compile 'com.github.bumptech.glide:glide:4.0.0-RC1'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC1'
+//    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+//    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
+
+    //retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.3.0' //Proguard
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0' //Proguard
+    compile 'com.squareup.retrofit2:converter-scalars:2.3.0' //Proguard
+
+    compile 'com.github.yalantis:ucrop:2.2.1' //Proguard
+    compile 'com.squareup.picasso:picasso:2.5.2' //Proguard
+
+    //Proguard
+    compile 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    compile 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+}

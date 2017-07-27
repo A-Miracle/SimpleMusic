@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/app_name">
+        <Preference
+            android:key="version"
+            android:summary="v 1.0"
+            android:title="当前版本" />
+        <Preference
+            android:key="update"
+            android:title="检查更新" />
+        <Preference
+            android:key="share"
+            android:title="推荐给朋友" />
+        <Preference
+            android:key="star"
+            android:summary="前往项目地址给个Star，鼓励作者"
+            android:title="给我点赞" />
+        <Preference
+            android:key="reward"
+            android:summary="您的支持，是作者的无限动力"
+            android:title="打赏作者" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="关于作者">
+        <Preference
+            android:key="github"
+            android:summary="https://github.com/A-Miracle"
+            android:title="Github" />
+    </PreferenceCategory>
+</PreferenceScreen>

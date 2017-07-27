@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.PlayBarFragment">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:background="#0E000000" />
+
+    <com.ctao.baselib.lib.materialripple.MaterialRippleLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rootView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="10000"
+        app:mrl_rippleColor="@color/def_bar_title_color">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/icon_artist"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_user"/>
+
+            <TextView
+                android:id="@+id/tv_songName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/icon_artist"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="1dp"
+                android:layout_toLeftOf="@+id/bt_pre"
+                android:layout_toRightOf="@+id/icon_artist"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:maxLines="1"
+                android:text="可可音乐"
+                android:tag="text_primary"
+                android:textColor="@color/def_bar_title_color"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/tv_artistName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_songName"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@+id/icon_artist"
+                android:ellipsize="marquee"
+                android:maxLines="1"
+                android:tag="text_secondary"
+                android:text="传播好音乐"
+                android:textColor="@color/def_bar_title_color"
+                android:textSize="12dp" />
+
+            <com.ctao.music.ui.widget.IconTextView
+                android:padding="5dp"
+                android:id="@+id/bt_pre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/bt_play_pause"
+                android:text="@string/bar_pre_icon"
+                android:tag="text_secondary"
+                android:textColor="@color/def_bar_title_color"
+                android:textSize="27dp" />
+
+            <com.ctao.music.ui.widget.IconTextView
+                android:padding="5dp"
+                android:id="@+id/bt_play_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/bt_next"
+                android:text="@string/bar_play_icon"
+                android:tag="text_secondary"
+                android:textColor="@color/def_bar_title_color"
+                android:textSize="27dp" />
+
+            <com.ctao.music.ui.widget.IconTextView
+                android:id="@+id/bt_next"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="@string/bar_next_icon"
+                android:tag="text_secondary"
+                android:textColor="@color/def_bar_title_color"
+                android:textSize="27dp" />
+        </RelativeLayout>
+
+    </com.ctao.baselib.lib.materialripple.MaterialRippleLayout>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_weight="1"
+        android:max="100"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:progress="0"
+        android:progressDrawable="@drawable/seekbar_define_style"
+        android:secondaryProgress="0"
+        android:thumb="@null" />
+</LinearLayout>

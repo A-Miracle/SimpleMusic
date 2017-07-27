@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#0E000000" />
+
+    <com.ctao.baselib.lib.materialripple.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:mrl_rippleColor="@color/def_bar_title_color">
+
+        <LinearLayout
+            android:id="@+id/ml_high_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="6dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="10000"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:fontFamily="sans-serif"
+                android:singleLine="true"
+                android:tag="text_primary"
+                android:text="@string/lrc_high_light"
+                android:textSize="16sp" />
+
+            <com.ctao.baselib.widget.BorderCircleView
+                android:id="@+id/bcv_high_light"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </com.ctao.baselib.lib.materialripple.MaterialRippleLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#0E000000" />
+
+    <com.ctao.baselib.lib.materialripple.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:mrl_rippleColor="@color/def_bar_title_color">
+
+        <LinearLayout
+            android:id="@+id/ml_default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="6dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="10000"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:fontFamily="sans-serif"
+                android:singleLine="true"
+                android:tag="text_primary"
+                android:text="@string/lrc_default"
+                android:textSize="16sp" />
+
+            <com.ctao.baselib.widget.BorderCircleView
+                android:id="@+id/bcv_default"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </com.ctao.baselib.lib.materialripple.MaterialRippleLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#0E000000" />
+
+    <com.ctao.baselib.lib.materialripple.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:mrl_rippleColor="@color/def_bar_title_color">
+
+        <LinearLayout
+            android:id="@+id/ml_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="6dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="10000"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:fontFamily="sans-serif"
+                android:singleLine="true"
+                android:tag="text_primary"
+                android:text="@string/lrc_hint"
+                android:textSize="16sp" />
+
+            <com.ctao.baselib.widget.BorderCircleView
+                android:id="@+id/bcv_hint"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </com.ctao.baselib.lib.materialripple.MaterialRippleLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#0E000000" />
+
+    <com.ctao.baselib.lib.materialripple.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:mrl_rippleColor="@color/def_bar_title_color">
+
+        <LinearLayout
+            android:id="@+id/ml_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="6dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="10000"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:fontFamily="sans-serif"
+                android:singleLine="true"
+                android:tag="text_primary"
+                android:text="@string/lrc_indicator"
+                android:textSize="16sp" />
+
+            <com.ctao.baselib.widget.BorderCircleView
+                android:id="@+id/bcv_indicator"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </com.ctao.baselib.lib.materialripple.MaterialRippleLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#0E000000" />
+
+    <com.ctao.baselib.lib.materialripple.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:mrl_rippleColor="@color/def_bar_title_color">
+
+        <LinearLayout
+            android:id="@+id/ml_drag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="6dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="10000"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:fontFamily="sans-serif"
+                android:singleLine="true"
+                android:tag="text_primary"
+                android:text="@string/lrc_drag"
+                android:textSize="16sp" />
+
+            <com.ctao.baselib.widget.BorderCircleView
+                android:id="@+id/bcv_drag"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </com.ctao.baselib.lib.materialripple.MaterialRippleLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#0E000000" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:paddingLeft="16dp"
+        android:paddingRight="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:fontFamily="sans-serif"
+            android:singleLine="true"
+            android:tag="text_primary"
+            android:text="字体大小"
+            android:textSize="16sp" />
+
+        <com.ctao.music.ui.widget.IconTextView
+            android:id="@+id/tv_decrease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="@string/lyric_font_size_decrease_icon"
+            android:padding="7dp"
+            android:tag="text_secondary"
+            android:textColor="@color/def_bar_title_color"
+            android:textSize="21dp" />
+
+        <SeekBar
+            android:id="@+id/sb_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="100"
+            android:progress="0"
+            android:secondaryProgress="0"
+            android:tag="tint_text_primary"/>
+
+        <com.ctao.music.ui.widget.IconTextView
+            android:id="@+id/tv_increase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:text="@string/lyric_font_size_increase_icon"
+            android:padding="7dp"
+            android:tag="text_secondary"
+            android:textColor="@color/def_bar_title_color"
+            android:textSize="21dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#0E000000" />
+
+    <com.ctao.baselib.lib.materialripple.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:mrl_rippleColor="@color/def_bar_title_color">
+
+            <TextView
+                android:id="@+id/ml_restore"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:singleLine="true"
+                android:tag="text_primary"
+                android:text="恢复默认"
+                android:textSize="16sp" />
+    </com.ctao.baselib.lib.materialripple.MaterialRippleLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#0E000000" />
+</LinearLayout>

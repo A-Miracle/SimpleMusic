@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:icon="@mipmap/ic_menu_music_white_48dp"
+            android:id="@+id/item_myMusic"
+            android:checked="true"
+            android:title="我的音乐" />
+        <item
+            android:icon="@mipmap/ic_menu_queue_white_48dp"
+            android:id="@+id/item_mySongList"
+            android:title="我的歌单" />
+        <item
+            android:icon="@mipmap/ic_menu_folder_white_48dp"
+            android:id="@+id/item_folder"
+            android:title="文件夹" />
+        <item
+            android:icon="@mipmap/ic_menu_favorite_white_48dp"
+            android:id="@+id/item_like"
+            android:title="我喜欢" />
+        <item
+            android:icon="@mipmap/ic_menu_watch_later_white_48dp"
+            android:id="@+id/item_record"
+            android:title="播放记录" />
+        <item
+            android:icon="@mipmap/ic_menu_add_box_white_48dp"
+            android:id="@+id/item_recently_added"
+            android:title="最近添加" />
+        <item
+            android:icon="@mipmap/ic_menu_sort_white_48dp"
+            android:id="@+id/item_playOut"
+            android:title="播放排行" />
+    </group>
+
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="none">
+        <item
+            android:icon="@mipmap/ic_menu_settings_white_48dp"
+            android:id="@+id/item_setting"
+            android:title="功能设置" />
+        <item
+            android:icon="@mipmap/ic_menu_exit_white_48dp"
+            android:id="@+id/item_exit"
+            android:title="退出应用" />
+        <item
+            android:icon="@mipmap/ic_menu_about_white_48dp"
+            android:id="@+id/item_about"
+            android:title="关于可可音乐" />
+    </group>
+</menu>

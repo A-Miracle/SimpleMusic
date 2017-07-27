@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar" />
+
+    <fragment
+        android:id="@+id/fl_container"
+        android:name="com.ctao.music.ui.fragment.ContainerFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="10000"
+        tools:layout="@layout/fragment_container" />
+
+    <fragment
+        android:id="@+id/fl_play_bar"
+        android:name="com.ctao.music.ui.fragment.PlayBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_play_bar" />
+
+</LinearLayout>

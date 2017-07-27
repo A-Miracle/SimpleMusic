@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--light_theme-->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="text_color_primary">#303030</color>
+    <color name="text_color_secondary">#767f83</color>
+
+    <!--dark_theme-->
+    <color name="colorPrimary_Dark">#37474F</color>
+    <color name="colorPrimaryDark_Dark">#283539</color>
+    <color name="colorAccent_Dark">#2196F3</color>
+    <color name="text_color_primary_dark">#FAFAFA</color>
+    <color name="text_color_secondary_dark">#AAAAAA</color>
+
+    <color name="def_bar_title_color">#767f83</color>
+    <color name="def_bar_title_color_dark">#303030</color>
+
+    <color name="trans">#00000000</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="white_ce">#FFCECECE</color>
+    <color name="white_trans_33">#33FFFFFF</color>
+    <color name="white_trans_3d">#3DFFFFFF</color>
+    <color name="white_trans_50">#50FFFFFF</color>
+
+    <color name="black">#000000</color>
+    <color name="black_21">#212121</color>
+    <color name="black_trans_33">#33000000</color>
+    <color name="black_trans_50">#50000000</color>
+    <color name="black_trans_aa">#AA000000</color>
+    <color name="black_trans_80">#80000000</color>
+
+    <color name="grey">#9E9E9E</color>
+    <color name="gray_b0">#FFb0b0b0</color>
+    <color name="gray_35">#FF353535</color>
+
+
+    <color name="md_red">#D32F2F</color>
+    <color name="md_purple">#673AB7</color>
+    <color name="md_blue">#2196F3</color>
+    <color name="md_green">#43A047</color>
+    <color name="md_white">#FAFAFA</color>
+    <color name="md_amber">#FFC107</color>
+    <color name="md_lime">#CDDC39</color>
+    <color name="md_pink">#E91E63</color>
+    <color name="md_blue_grey">#78909C</color>
+</resources>

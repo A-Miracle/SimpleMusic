@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.SkinFragment">
+
+    <LinearLayout
+        android:id="@+id/ll_head"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:fontFamily="sans-serif"
+            android:singleLine="true"
+            android:tag="text_primary"
+            android:text="透明度"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/sb_blurry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="10000"
+            android:max="10000"
+            android:progress="0"
+            android:secondaryProgress="0"
+            android:tag="tint_text_primary" />
+
+        <CheckBox
+            android:id="@+id/cb_skin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="tint_accent_color,text_primary"
+            android:text="开启壁纸"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_skin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:fadeScrollbars="true"
+        android:fadingEdge="none"
+        android:overScrollMode="never"
+        android:padding="@dimen/item_skin_spacing"
+        android:scrollbars="none" />
+</LinearLayout>

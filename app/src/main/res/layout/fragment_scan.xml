@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_root"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.ScanFragment">
+
+    <com.ctao.music.ui.widget.ScanView
+        android:id="@+id/view_scan"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="42dp" />
+
+    <TextView
+        android:id="@+id/tv_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="7dp"
+        android:ellipsize="middle"
+        android:gravity="center_horizontal"
+        android:maxLines="1"
+        android:text="0%"
+        android:tag="text_primary"
+        android:textColor="@color/def_bar_title_color"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/tv_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="27dp"
+        android:ellipsize="middle"
+        android:gravity="center_horizontal"
+        android:maxLines="1"
+        android:text="一键扫描手机内的歌曲文件"
+        android:textColor="@color/def_bar_title_color"
+        android:tag="text_secondary"
+        android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/bt_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="42dp"
+        android:background="@drawable/bt_background"
+        android:paddingBottom="8dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="16dp"
+        android:paddingTop="7dp"
+        android:text="开始扫描"
+        android:textColor="@color/white"
+        android:tag="bg_tint_primary_color_selector_lighter"
+        android:textSize="16dp" />
+
+</LinearLayout>

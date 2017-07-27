@@ -1,0 +1,65 @@
+<resources>
+
+    <!-- http://blog.csdn.net/axi295309066/article/details/52462452 -->
+    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--便于切换夜间模式时的背景颜色控制-->
+        <!--<item name="android:windowBackground">@null</item>-->
+
+        <!--window默认是黑色配置是否透明(window是最顶级，在decoreView的外面)-->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="AppThemeBaseDark" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Dark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Dark</item>
+        <item name="colorAccent">@color/colorAccent_Dark</item>
+        <!--<item name="android:windowBackground">@null</item>-->
+
+        <!--window默认是黑色配置是否透明(window是最顶级，在decoreView的外面)-->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="AppTheme" parent="AppThemeBase">
+        <!--toolbar小汉堡样式-->
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="ate_key">light_theme</item>
+    </style>
+
+    <style name="AppThemeDark" parent="AppThemeBaseDark">
+        <!--toolbar小汉堡样式-->
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="ate_key">dark_theme</item>
+    </style>
+
+    <!--小汉堡颜色为白色-->
+    <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@color/white</item>
+    </style>
+
+    <style name="Anim_bottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+
+    <style name="dialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">true</item><!--半透明-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@color/trans</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">true</item><!--模糊-->
+    </style>
+
+    <style name="dialogAnimationStyle" parent="@android:style/Animation.Dialog">
+        <item name="@android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <!-- 进入时的动画 -->
+        <item name="@android:windowExitAnimation">@anim/slide_out_bottom</item>
+        <!-- 退出时的动画 -->
+    </style>
+</resources>

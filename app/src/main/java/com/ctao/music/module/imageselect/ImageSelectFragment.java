@@ -10,7 +10,7 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -40,6 +40,7 @@ import com.ctao.music.module.imageselect.adapter.ImageGridAdapter;
 import com.ctao.music.module.imageselect.bean.Folder;
 import com.ctao.music.module.imageselect.bean.Image;
 import com.ctao.music.ui.base.MvpFragment;
+import com.ctao.music.utils.UriUtils;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -212,12 +213,15 @@ public class ImageSelectFragment extends MvpFragment implements AdapterView.OnIt
             requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, getString(R.string.permission_rationale_write_storage), REQUEST_STORAGE_WRITE_ACCESS_PERMISSION);
         }else {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (Build.VERSION.SDK_INT >= 24) {
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // 添加这一句表示对目标应用临时授权该Uri所代表的文件
+            }
             if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
                 if (mTmpFile == null) {
                     mTmpFile = FileUtils.createTmpFile(Constant.FILE_CACHE, "cameraTemp.jpg");
                 }
                 if (mTmpFile != null && mTmpFile.exists()) {
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mTmpFile));
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, UriUtils.fromFile(mTmpFile));
                     startActivityForResult(intent, REQUEST_CAMERA);
                 } else {
                     ToastUtils.show(getString(R.string.error_image_not_exist));

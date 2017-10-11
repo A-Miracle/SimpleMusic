@@ -30,6 +30,7 @@ import com.ctao.music.manager.ThreadManager;
 import com.ctao.music.model.SongInfo;
 import com.ctao.music.ui.MainActivity;
 import com.ctao.music.utils.MediaUtils;
+import com.ctao.music.utils.UriUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -190,7 +191,7 @@ final class MediaNotificationManager extends BroadcastReceiver {
                             @Override
                             public void run() {
                                 File file = FileUtils.createTmpFile(Constant.FILE_IMG, albumId + ".jpg");
-                                FileUtils.saveBitmapToFile(file, bitmap, Bitmap.CompressFormat.JPEG);
+                                FileUtils.saveBitmapToFile(file, UriUtils.fileProvider(), bitmap, Bitmap.CompressFormat.JPEG);
                             }
                         });
                         return true;

@@ -51,6 +51,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "BUGLY_DEBUG", "true"
             versionNameSuffix buildTime(" - yyyy-MM-dd HH:mm")
+            resValue "string", "fileprovider", "com.ctao.music.debug.fileprovider"
         }
 
         release {
@@ -61,6 +62,7 @@ android {
             jniDebuggable false // jni debug模式
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "BUGLY_DEBUG", "false" // 是否输出LOG信息
+            resValue "string", "fileprovider", "com.ctao.music.fileprovider"
         }
     }
 }
@@ -69,10 +71,6 @@ def buildTime(String format) {
     def df = new SimpleDateFormat(format)
     df.setTimeZone(TimeZone.getDefault())
     return df.format(new Date())
-}
-
-repositories {
-    mavenCentral() // jcenter() works as well because it pulls from Maven Central
 }
 
 dependencies {
@@ -109,4 +107,10 @@ dependencies {
     //Proguard
     compile 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
     compile 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+
+    compile("com.github.hotchemi:permissionsdispatcher:3.0.1") {
+        // if you don't use android.app.Fragment you can exclude support for them
+        exclude module: "support-v13"
+    }
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.0.1"
 }

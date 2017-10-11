@@ -17,6 +17,7 @@ import com.ctao.baselib.utils.DisplayUtils;
 import com.ctao.baselib.utils.ToastUtils;
 import com.ctao.music.R;
 import com.ctao.music.ui.base.MvpActivity;
+import com.ctao.music.utils.UriUtils;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 
@@ -194,7 +195,7 @@ public class ImageSelectActivity extends MvpActivity implements ImageSelectFragm
     }
 
     private void uCrop(String path) {
-        Uri sourceUri = Uri.fromFile(new File(path));
+        Uri sourceUri = UriUtils.fromFile(new File(path));
 
         // 打开裁剪
         UCrop uCrop = UCrop.of(sourceUri, mDestinationUri);
@@ -237,7 +238,7 @@ public class ImageSelectActivity extends MvpActivity implements ImageSelectFragm
     public void onCameraShot(File imageFile) {
         if(imageFile != null) {
             // 通知系统的图像有变化
-            // sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(imageFile)));
+            // sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, UriUtils.fromFile(imageFile)));
 
             if(!isCorp){
                 Intent data = new Intent();

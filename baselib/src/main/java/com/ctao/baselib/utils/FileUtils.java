@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
+import android.text.TextUtils;
 
 import com.ctao.baselib.Global;
 
@@ -79,6 +81,16 @@ public class FileUtils {
      * @return
      */
     public static Uri saveBitmapToFile(File file, Bitmap bitmap, Bitmap.CompressFormat format) {
+        return saveBitmapToFile(file, null, bitmap, format);
+    }
+
+    /**
+     * 保存bitmap到file
+     * @param file
+     * @param bitmap
+     * @return
+     */
+    public static Uri saveBitmapToFile(File file, String fileProvider, Bitmap bitmap, Bitmap.CompressFormat format) {
         if (file == null || bitmap == null || file.isDirectory()) {
             return null;
         }
@@ -95,7 +107,12 @@ public class FileUtils {
             bitmap.compress(format, 100, fOut);
             fOut.flush();
 
-            Uri fromFile = Uri.fromFile(file);
+            Uri fromFile;
+            if(TextUtils.isEmpty(fileProvider)){
+                fromFile = Uri.fromFile(file);
+            }else {
+                fromFile = FileProvider.getUriForFile(Global.getContext(), fileProvider, file);
+            }
 
             // 其次把文件插入到系统图库
             MediaStore.Images.Media.insertImage(Global.getContext().getContentResolver(), file.getAbsolutePath(), file.getName(), null);

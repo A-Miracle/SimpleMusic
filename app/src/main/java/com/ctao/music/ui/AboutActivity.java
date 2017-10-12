@@ -1,5 +1,6 @@
 package com.ctao.music.ui;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -17,19 +18,29 @@ import android.view.WindowManager;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
+import com.ctao.baselib.utils.FileUtils;
+import com.ctao.baselib.utils.SPUtils;
 import com.ctao.baselib.utils.ToastUtils;
 import com.ctao.baselib.utils.ViewUtils;
 import com.ctao.music.BuildConfig;
+import com.ctao.music.Constant;
 import com.ctao.music.R;
+import com.ctao.music.interact.contract.IUpdateContract;
+import com.ctao.music.interact.model.Update;
 import com.ctao.music.ui.base.MvpActivity;
+import com.ctao.music.utils.UriUtils;
+
+import java.io.File;
 
 import butterknife.BindView;
 
 /**
  * Created by A Miracle on 2017/7/4.
  */
-public class AboutActivity extends MvpActivity {
+public class AboutActivity extends MvpActivity implements IUpdateContract.View{
     @BindView(R.id.toolbar) Toolbar toolbar;
+    private IUpdateContract.Presenter mPresenter;
+    private MaterialDialog mProgress;
 
     @Override
     protected int getLayoutId() {
@@ -60,6 +71,94 @@ public class AboutActivity extends MvpActivity {
     @Override
     protected void onAfterSetContentLayout(Bundle savedInstanceState) {
         getFragmentManager().beginTransaction().replace(R.id.fl_container, new AboutFragment()).commit();
+    }
+
+    @Override
+    public void checkUpdate(final Update update) {
+        if(update == null){
+            return;
+        }
+
+        if(BuildConfig.VERSION_CODE >= update.versionCode){
+            ToastUtils.show("当前已是最新版本");
+            return;
+        }
+
+        SPUtils.putObject(Constant.SP_LATEST_CODE, update.versionCode); // 存储最新包Code, 用于安装后删除
+
+        new MaterialDialog.Builder(this)
+                .theme(Theme.LIGHT)
+                .title("发现新版本：" + update.versionName)
+                .content(update.detail)
+                .negativeText("取消")
+                .positiveText("下载Apk")
+                .onAny(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        switch (which) {
+                            case POSITIVE: // 下载Apk
+                                File file = new File(FileUtils.getExternalFilesDir(Constant.FILE_APK) + File.separator + update.fileName);
+                                if (file != null && file.exists()) {
+                                    installApk(file); // 下载过了, 直接安装
+                                }else {
+                                    mPresenter.downloadApk(update.fileName);
+                                }
+                                break;
+                        }
+
+                    }
+                })
+                .show();
+    }
+
+    private void installApk(File file) {
+        if(file != null){ // 启用安装
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            if(Build.VERSION.SDK_INT >= 24){
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
+            intent.setDataAndType(UriUtils.fromFile(file), "application/vnd.android.package-archive");
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void downloadComplete(File file) {
+        if(mProgress != null){
+            mProgress.dismiss();
+            mProgress = null;
+        }
+        if(file == null){
+            return;
+        }
+        ToastUtils.show("下载完成");
+        installApk(file);
+    }
+
+    @Override
+    public void downloadProgress(int progress) {
+        if (mProgress == null) {
+            mProgress = new MaterialDialog.Builder(this)
+                    .content("下载中...")
+                    .progress(true, 0)
+                    .cancelable(false)
+                    .canceledOnTouchOutside(false)
+                    .progressIndeterminateStyle(true)
+                    .build();
+            mProgress.show();
+        }
+        mProgress.setProgress(progress);
+    }
+
+    @Override
+    public void showFailure(String msg, String... tag) {
+        super.showFailure(msg, tag);
+        if(tag.length > 0 && "downloadApk".equals(tag[0])){
+            if(mProgress != null){
+                mProgress.dismiss();
+                mProgress = null;
+            }
+        }
     }
 
     public static class AboutFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener {
@@ -95,7 +194,7 @@ public class AboutActivity extends MvpActivity {
         public boolean onPreferenceClick(Preference preference) {
             switch (preference.getKey()){
                 case "update":
-                    ToastUtils.show("功能暂未实现, 敬请期待!");
+                    checkUpdate();
                     break;
                 case "share":
                     share();
@@ -113,10 +212,17 @@ public class AboutActivity extends MvpActivity {
             return true;
         }
 
+        private void checkUpdate() {
+            Activity activity = getActivity();
+            if(activity instanceof AboutActivity){
+                ((AboutActivity)activity).mPresenter.checkUpdate();
+            }
+        }
+
         private void share() {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_TEXT, "可可音乐...");
+            intent.putExtra(Intent.EXTRA_TEXT, "https://github.com/A-Miracle/SimpleMusic/blob/master/share.md");
             startActivity(Intent.createChooser(intent, "分享"));
         }
 

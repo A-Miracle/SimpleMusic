@@ -9,6 +9,7 @@ import com.afollestad.appthemeengine.Config;
 import com.afollestad.appthemeengine.customizers.ATEActivityThemeCustomizer;
 import com.ctao.baselib.ui.BaseActivity;
 import com.ctao.baselib.utils.SPUtils;
+import com.ctao.baselib.utils.ToastUtils;
 import com.ctao.music.Constant;
 import com.ctao.music.R;
 import com.ctao.music.event.MessageEvent;
@@ -79,6 +80,11 @@ public abstract class MvpActivity extends BaseActivity implements ILoadingView, 
 
     @Override
     public void hideProgress() { }
+
+    @Override
+    public void showFailure(String msg, String... tag) {
+        ToastUtils.show(msg);
+    }
 
     //https://github.com/greenrobot/EventBus
     @Subscribe(threadMode = ThreadMode.MAIN)

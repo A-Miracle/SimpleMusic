@@ -6,5 +6,6 @@ package com.ctao.music.interact.view;
 public interface ILoadingView {
     void showProgress();
     void hideProgress();
+    void showFailure(String msg, String... tag);
 }
 

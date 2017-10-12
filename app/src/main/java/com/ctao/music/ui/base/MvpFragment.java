@@ -53,6 +53,14 @@ public abstract class MvpFragment extends BaseFragment implements ILoadingView {
         }
     }
 
+    @Override
+    public void showFailure(String msg, String... tag) {
+        if(getActivity() instanceof MvpActivity){
+            MvpActivity activity = (MvpActivity) getActivity();
+            activity.showFailure(msg, tag);
+        }
+    }
+
     //https://github.com/greenrobot/EventBus
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {

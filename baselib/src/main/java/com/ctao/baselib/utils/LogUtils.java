@@ -109,4 +109,13 @@ public class LogUtils {
             System.err.println(">>> "+message);
         }
     }
+
+    public static void printOut(String tag, String message) {
+        printOut(tag + " : " + message);
+    }
+
+    public static void printErr(String tag, String message) {
+        printErr(tag + " : " + message);
+    }
+
 }

@@ -50,7 +50,7 @@ android {
             applicationIdSuffix ".debug"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "BUGLY_DEBUG", "true"
-            versionNameSuffix buildTime(" - yyyy-MM-dd HH:mm")
+            versionNameSuffix " Music"
             resValue "string", "fileprovider", "com.ctao.music.debug.fileprovider"
         }
 

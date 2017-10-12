@@ -6,8 +6,10 @@ package com.ctao.music.network.retrofit2;
  */
 public class RetrofitConfig {
     public static final String URL_KU_GOU;
+    public static final String URL_GIT_HUB;
 
     static{
         URL_KU_GOU = "http://lyrics.kugou.com/";
+        URL_GIT_HUB = "https://raw.githubusercontent.com/";
     }
 }

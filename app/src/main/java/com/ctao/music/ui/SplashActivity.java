@@ -26,8 +26,6 @@ import butterknife.BindView;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
-import permissions.dispatcher.OnShowRationale;
-import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
 /**
@@ -93,7 +91,7 @@ public class SplashActivity extends MvpActivity {
      * 跳转到主页面
      */
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-    protected void goHome() {
+    void goHome() {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -105,7 +103,7 @@ public class SplashActivity extends MvpActivity {
     @Override
     public void onBackPressed() { }
 
-    @OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
+    /*@OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showRationaleForCamera(final PermissionRequest request) {
         // 解释为什么需要许可。它传入一个PermissionRequest对象，可以用于在用户输入时继续或中止当前的权限请求
         new MaterialDialog.Builder(this)
@@ -124,21 +122,21 @@ public class SplashActivity extends MvpActivity {
                 })
                 .cancelable(false)
                 .show();
-    }
+    }*/
 
     @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showDeniedForCamera() {
         // 如果用户没有授予权限，则调用该方法
         new MaterialDialog.Builder(this)
                 .title("权限异常")
-                .content("请重新打开应用并允许权限")
+                .content("可可音乐需要扫描SD卡音频, 否则应用可能无法正常运行")
                 .positiveText("我知道了")
                 .onAny(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         switch (which) {
                             case POSITIVE:
-                                finish();
+                                SplashActivityPermissionsDispatcher.goHomeWithPermissionCheck(SplashActivity.this);
                                 break;
                         }
                     }
@@ -152,7 +150,7 @@ public class SplashActivity extends MvpActivity {
         // 如果用户选择让设备“不再询问”一个权限，则调用该方法
         new MaterialDialog.Builder(this)
                 .title("权限异常")
-                .content("请重新进入应用设置开启相关权限, 否则应用可能无法正常运行")
+                .content("请到系统设置的权限管理开启相关权限, 否则应用可能无法正常运行")
                 .positiveText("我知道了")
                 .onAny(new MaterialDialog.SingleButtonCallback() {
                     @Override

@@ -12,6 +12,8 @@ public class Constant {
     public static final String FILE_CACHE = "file";
     /** Skin缓存目录 */
     public static final String FILE_SKIN = "skin";
+    /** Apk缓存目录 */
+    public static final String FILE_APK = "apk";
 
     public static final String SP_EXIT_FLAG = "SP_EXIT_FLAG";
     public static final String SP_INITIALIZE = "SP_INITIALIZE";
@@ -37,4 +39,7 @@ public class Constant {
     public static final String SP_SKIN_PATH = "SP_SKIN_PATH";
     public static final String SKIN_TYPE_FILE = "file:";
     public static final String SKIN_TYPE_RES = "res:";
+
+    /**apk*/
+    public static final String SP_LATEST_CODE = "SP_LATEST_CODE";
 }

@@ -26,6 +26,7 @@ import com.ctao.music.BuildConfig;
 import com.ctao.music.Constant;
 import com.ctao.music.R;
 import com.ctao.music.interact.contract.IUpdateContract;
+import com.ctao.music.interact.contract.UpdatePresenter;
 import com.ctao.music.interact.model.Update;
 import com.ctao.music.ui.base.MvpActivity;
 import com.ctao.music.utils.UriUtils;
@@ -70,6 +71,7 @@ public class AboutActivity extends MvpActivity implements IUpdateContract.View{
 
     @Override
     protected void onAfterSetContentLayout(Bundle savedInstanceState) {
+        mPresenter = new UpdatePresenter(this);
         getFragmentManager().beginTransaction().replace(R.id.fl_container, new AboutFragment()).commit();
     }
 

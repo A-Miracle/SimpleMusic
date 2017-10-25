@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,14 +20,29 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
+import com.ctao.baselib.utils.DateUtils;
+import com.ctao.baselib.utils.FileUtils;
+import com.ctao.baselib.utils.SPUtils;
 import com.ctao.baselib.utils.ToastUtils;
 import com.ctao.baselib.utils.ViewUtils;
+import com.ctao.music.BuildConfig;
+import com.ctao.music.Constant;
 import com.ctao.music.R;
 import com.ctao.music.event.MessageEvent;
+import com.ctao.music.interact.contract.IUpdateContract;
+import com.ctao.music.interact.contract.UpdatePresenter;
+import com.ctao.music.interact.model.Update;
 import com.ctao.music.ui.base.MvpActivity;
 import com.ctao.music.ui.common.CommonActivity;
 import com.ctao.music.ui.fragment.ScanFragment;
 import com.ctao.music.utils.OtherPendantUtils;
+import com.ctao.music.utils.UriUtils;
+
+import java.io.File;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -34,7 +50,7 @@ import butterknife.OnClick;
 /**
  * 可可音乐
  */
-public class MainActivity extends MvpActivity {
+public class MainActivity extends MvpActivity implements IUpdateContract.View {
 
     @BindView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
     @BindView(R.id.app_bar) AppBarLayout mAppBarLayout;
@@ -42,6 +58,8 @@ public class MainActivity extends MvpActivity {
     @BindView(R.id.tv_menu_right_1) TextView tv_menu_right_1;
 
     ActionBarDrawerToggle mDrawerToggle;
+    private IUpdateContract.Presenter mPresenter;
+    private MaterialDialog mProgress;
 
     @Override
     public void finish() {
@@ -72,10 +90,19 @@ public class MainActivity extends MvpActivity {
 
     @Override
     protected void onAfterSetContentLayout(Bundle savedInstanceState) {
+        mPresenter = new UpdatePresenter(this);
         setSwipeBackEnable(false);
         initNavigationMenu();
         initMenuRight();
         mAppBarLayout.setBackgroundColor(themeColor);
+
+        deleteHasInstalledPackage();
+        String nowDate = DateUtils.formatTime(new Date().getTime(), "yyyyMMdd");
+        String oldDate = SPUtils.getString(Constant.SP_LATEST_DATE, "");
+        if(!nowDate.equals(oldDate)){ // 每天一次检查更新
+            SPUtils.putObject(Constant.SP_LATEST_DATE, nowDate);
+            mPresenter.checkUpdate();
+        }
     }
 
     // 初始化Toolbar右侧子菜单
@@ -171,5 +198,115 @@ public class MainActivity extends MvpActivity {
     @Override
     protected void initOtherOnCreateInLast() {
         OtherPendantUtils.addPendant(this, getContentView());
+    }
+
+    //---
+
+    private void deleteHasInstalledPackage() {
+        int code = SPUtils.getInt(Constant.SP_LATEST_CODE, -1);
+        if(code == -1){
+            return;
+        }
+        if(BuildConfig.VERSION_CODE >= code){ // 已安装最新, 清空apk
+            File dir = FileUtils.getExternalFilesDir(Constant.FILE_APK);
+            if(dir != null && dir.exists() && dir.isDirectory()){
+                for (File file : dir.listFiles()) {
+                    if(file != null && file.exists() && file.isFile()){
+                        file.delete();
+                    }
+                }
+            }
+            SPUtils.putObject(Constant.SP_LATEST_CODE, -1);
+        }
+    }
+
+    @Override
+    public void checkUpdate(final Update update) {
+        if(update == null){
+            return;
+        }
+
+        if(BuildConfig.VERSION_CODE >= update.versionCode){
+            return;
+        }
+
+        SPUtils.putObject(Constant.SP_LATEST_CODE, update.versionCode); // 存储最新包Code, 用于安装后删除
+
+        new MaterialDialog.Builder(this)
+                .theme(Theme.LIGHT)
+                .title("发现新版本：" + update.versionName)
+                .content(update.detail)
+                .negativeText("取消")
+                .positiveText("下载Apk")
+                .onAny(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        switch (which) {
+                            case POSITIVE: // 下载Apk
+                                File file = new File(FileUtils.getExternalFilesDir(Constant.FILE_APK) + File.separator + update.fileName);
+                                if (file != null && file.exists()) {
+                                    installApk(file); // 下载过了, 直接安装
+                                }else {
+                                    mPresenter.downloadApk(update.fileName);
+                                }
+                                break;
+                        }
+
+                    }
+                })
+                .show();
+    }
+
+    private void installApk(File file) {
+        if(file != null){ // 启用安装
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            if(Build.VERSION.SDK_INT >= 24){
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
+            intent.setDataAndType(UriUtils.fromFile(file), "application/vnd.android.package-archive");
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void downloadComplete(File file) {
+        if(mProgress != null){
+            mProgress.dismiss();
+            mProgress = null;
+        }
+        if(file == null){
+            return;
+        }
+        ToastUtils.show("下载完成");
+        installApk(file);
+    }
+
+    @Override
+    public void downloadProgress(int progress) {
+        if (mProgress == null) {
+            mProgress = new MaterialDialog.Builder(this)
+                    .content("下载中...")
+                    .progress(true, 0)
+                    .cancelable(false)
+                    .canceledOnTouchOutside(false)
+                    .progressIndeterminateStyle(true)
+                    .build();
+            mProgress.show();
+        }
+        mProgress.setProgress(progress);
+    }
+
+    @Override
+    public void showFailure(String msg, String... tag) {
+        if(tag.length > 0 && "checkUpdate".equals(tag[0])){
+            return;
+        }
+        super.showFailure(msg, tag);
+        if(tag.length > 0 && "downloadApk".equals(tag[0])){
+            if(mProgress != null){
+                mProgress.dismiss();
+                mProgress = null;
+            }
+        }
     }
 }

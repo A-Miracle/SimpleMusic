@@ -41,5 +41,6 @@ public class Constant {
     public static final String SKIN_TYPE_RES = "res:";
 
     /**apk*/
-    public static final String SP_LATEST_CODE = "SP_LATEST_CODE";
+    public static final String SP_LATEST_DATE  = "SP_LATEST_DATE"; // 最新时间
+    public static final String SP_LATEST_CODE  = "SP_UPDATE_PACKAGE"; // 最新包Code
 }

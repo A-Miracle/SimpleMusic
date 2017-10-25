@@ -114,11 +114,13 @@ public class FileUtils {
                 fromFile = FileProvider.getUriForFile(Global.getContext(), fileProvider, file);
             }
 
-            // 其次把文件插入到系统图库
-            MediaStore.Images.Media.insertImage(Global.getContext().getContentResolver(), file.getAbsolutePath(), file.getName(), null);
+            if(false){
+                // 其次把文件插入到系统图库
+                MediaStore.Images.Media.insertImage(Global.getContext().getContentResolver(), file.getAbsolutePath(), file.getName(), null);
 
-            // 最后通知图库更新
-            Global.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, fromFile));
+                // 最后通知图库更新
+                Global.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, fromFile));
+            }
 
             return fromFile;
         } catch (IOException e) {

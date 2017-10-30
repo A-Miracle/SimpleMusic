@@ -120,12 +120,16 @@ public final class ContainerFragment extends MvpFragment implements SideBar.OnTo
 
     @Override
     public void showProgress() {
-        progress_bar.setVisibility(View.VISIBLE);
+        if(progress_bar != null){
+            progress_bar.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void hideProgress() {
-        progress_bar.setVisibility(View.GONE);
+        if(progress_bar != null){
+            progress_bar.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -148,6 +152,9 @@ public final class ContainerFragment extends MvpFragment implements SideBar.OnTo
     long[] mHits = new long[2];
     @Override
     public void onItemClick(RecyclerView.Adapter<RViewHolder> parent, RViewHolder holder, View view, int position) {
+        if(position >= mData.size()){
+            return;
+        }
         System.arraycopy(mHits, 1, mHits, 0, mHits.length-1);//数组的值向左移一位
         mHits[mHits.length-1] = SystemClock.uptimeMillis();//距离开机的时间
         if(mHits[1] - mHits[0] <= 500){

@@ -55,7 +55,9 @@ public final class PlayBarFragment extends MvpFragment {
             @Override
             public void run() {
                 // 很奇怪[魅族note5], xml中设置无效
-                seekBar.setPadding(0, 0, 0, 0);
+                if(seekBar != null){
+                    seekBar.setPadding(0, 0, 0, 0);
+                }
             }
         });
         mMediaProvider = new MediaProvider();

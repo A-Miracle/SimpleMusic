@@ -112,7 +112,7 @@ public final class PlayBarFragment extends MvpFragment {
                 Glide.with(getContext()).load(uri)
                         .error(R.mipmap.ic_user)
                         .placeholder(R.mipmap.ic_user)
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                         .centerCrop()
                         .into(icon_artist);
                 break;

@@ -3,12 +3,12 @@ package com.ctao.music.ui;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.design.widget.AppBarLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -42,6 +42,7 @@ import com.ctao.music.ui.widget.AViewPager;
 import com.ctao.music.ui.widget.IconTextView;
 import com.ctao.music.ui.widget.IndicatorLayout;
 import com.ctao.music.utils.ATEUtils;
+import com.google.android.material.appbar.AppBarLayout;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -55,8 +56,10 @@ import butterknife.OnClick;
  */
 public class LrcActivity extends MvpActivity implements SeekBar.OnSeekBarChangeListener, ViewPager.OnPageChangeListener, ColorChooserDialog.ColorCallback {
 
-    @BindView(R.id.app_bar) AppBarLayout mAppBarLayout;
-    @BindView(R.id.toolbar) Toolbar mToolbar;
+    @BindView(R.id.app_bar)
+    AppBarLayout mAppBarLayout;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     @BindView(R.id.view_pager) AViewPager view_pager;
     @BindView(R.id.songProgress) TextView songProgress;
     @BindView(R.id.seekBar) SeekBar seekBar;
@@ -437,7 +440,7 @@ public class LrcActivity extends MvpActivity implements SeekBar.OnSeekBarChangeL
             }
 
             if(title != 0){
-                getDialogBuilder(title).preselect(preselect).show();
+                getDialogBuilder(title).preselect(preselect).show(LrcActivity.this);
             }
         }
 

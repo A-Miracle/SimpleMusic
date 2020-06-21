@@ -2,14 +2,16 @@ package com.ctao.music.ui.widget;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 
 /**
  * Created by A Miracle on 2017/6/26.
  * 自定义字体图标
  */
-public final class IconTextView extends android.support.v7.widget.AppCompatTextView{
+public final class IconTextView extends AppCompatTextView {
     public IconTextView(Context context) {
         this(context, null);
     }

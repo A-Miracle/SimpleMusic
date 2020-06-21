@@ -5,13 +5,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
+
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import com.ctao.baselib.utils.DisplayUtils;
 import com.ctao.baselib.utils.ToastUtils;
@@ -67,7 +69,8 @@ public class ImageSelectActivity extends MvpActivity implements ImageSelectFragm
     private String mDescribe; //裁剪描述
     private Uri mDestinationUri; //裁剪输出目录
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.tv_menu_right_1) TextView tv_menu_right_1;
 
     @Override

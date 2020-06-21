@@ -4,20 +4,26 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.util.ArrayMap;
-import android.support.v4.view.PagerAdapter;
-import android.support.v7.widget.Toolbar;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.collection.ArrayMap;
+import androidx.viewpager.widget.PagerAdapter;
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.ctao.baselib.Global;
@@ -46,7 +52,8 @@ public class ImageBrowseActivity extends MvpActivity {
     private static final String TAG = ImageBrowseActivity.class.getSimpleName();
     private List<String> mData;
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected int getLayoutId() {
@@ -147,20 +154,20 @@ public class ImageBrowseActivity extends MvpActivity {
 
                 showProgress();
                 Glide.with(Global.getContext()).load(data)
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                         .centerCrop()
-                        .listener(new RequestListener<String, GlideDrawable>() {
+                        .listener(new RequestListener<Drawable>() {
                             @Override
-                            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                                 hideProgress();
                                 ToastUtils.show("加载失败");
-                                return true;
+                                return false;
                             }
 
                             @Override
-                            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                                 hideProgress();
-                                return true;
+                                return false;
                             }
                         })
                         .into(zoomImageView);

@@ -4,11 +4,11 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.appthemeengine.ATE;
 import com.afollestad.appthemeengine.Config;
@@ -27,6 +27,7 @@ import com.ctao.music.ui.widget.SideBar;
 import com.ctao.music.ui.widget.SongRecyclerView;
 import com.ctao.music.utils.ATEUtils;
 import com.ctao.music.utils.MediaUtils;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -46,7 +47,8 @@ public final class ContainerFragment extends MvpFragment implements SideBar.OnTo
     @BindView(R.id.sidebar) SideBar sidebar;
     @BindView(R.id.recyclerView) SongRecyclerView recyclerView;
     @BindView(R.id.progress_bar) ProgressBar progress_bar;
-    @BindView(R.id.fab_position) FloatingActionButton fab_position;
+    @BindView(R.id.fab_position)
+    FloatingActionButton fab_position;
 
     private SongAdapter mAdapter;
     private List<SongAdapter.SongData> mData;

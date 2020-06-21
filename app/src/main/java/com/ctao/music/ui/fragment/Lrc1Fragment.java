@@ -133,7 +133,7 @@ public class Lrc1Fragment extends MvpFragment implements LrcContract.View{
         Glide.with(getContext()).load(uri)
                 .error(R.mipmap.ic_user)
                 .placeholder(R.mipmap.ic_user)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop()
                 .into(riv_icon);
     }

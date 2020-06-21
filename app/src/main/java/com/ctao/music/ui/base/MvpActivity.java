@@ -2,7 +2,7 @@ package com.ctao.music.ui.base;
 
 import android.content.Intent;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 
 import com.afollestad.appthemeengine.Config;

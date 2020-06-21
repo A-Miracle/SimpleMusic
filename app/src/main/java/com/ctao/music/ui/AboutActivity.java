@@ -10,8 +10,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
@@ -39,7 +40,8 @@ import butterknife.BindView;
  * Created by A Miracle on 2017/7/4.
  */
 public class AboutActivity extends MvpActivity implements IUpdateContract.View{
-    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     private IUpdateContract.Presenter mPresenter;
     private MaterialDialog mProgress;
 

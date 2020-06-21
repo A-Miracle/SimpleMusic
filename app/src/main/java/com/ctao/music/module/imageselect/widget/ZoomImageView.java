@@ -22,10 +22,12 @@ import android.view.ViewTreeObserver;
 import android.widget.OverScroller;
 import android.widget.Scroller;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 /**
  * Created by A Miracle on 2017/2/8.
  */
-public class ZoomImageView extends android.support.v7.widget.AppCompatImageView implements View.OnTouchListener,
+public class ZoomImageView extends AppCompatImageView implements View.OnTouchListener,
         ViewTreeObserver.OnGlobalLayoutListener {
 
     /**

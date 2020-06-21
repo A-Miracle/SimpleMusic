@@ -5,9 +5,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+
 import android.view.View;
 
 import com.afollestad.appthemeengine.ATE;
@@ -33,7 +34,8 @@ import butterknife.BindView;
  * Created by A Miracle on 2017/7/21.
  */
 public class SettingActivity extends MvpActivity implements ColorChooserDialog.ColorCallback{
-    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected Toolbar getBackToolBar() {
@@ -93,15 +95,21 @@ public class SettingActivity extends MvpActivity implements ColorChooserDialog.C
     public void onColorChooserDismissed(@NonNull ColorChooserDialog dialog) {
     }
 
+    // 是这样的, 我的魅族note5 Android 6.0有点问题, 所以暂时屏蔽Android 5.0以上的挂件
+    public static boolean isShowPendantSnow(){
+        return android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP;
+    }
+
     public static class SettingsFragment extends PreferenceFragment {
         private String mAteKey;
         private ATEPreference pendant_snow;
+
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             // 是这样的, 我的魅族note5 Android 6.0有点问题, 所以暂时屏蔽Android 5.0以上的挂件
-            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
+            if (isShowPendantSnow()) {
                 addPreferencesFromResource(R.xml.preference_setting_pendant);
             }else{
                 addPreferencesFromResource(R.xml.preference_setting);
@@ -141,7 +149,7 @@ public class SettingActivity extends MvpActivity implements ColorChooserDialog.C
                             .backButton(R.string.color_back)
                             .customButton(R.string.color_custom)
                             .presetsButton(R.string.color_presets)
-                            .show();
+                            .show((SettingActivity) getActivity());
                     return true;
                 }
             });
@@ -157,7 +165,7 @@ public class SettingActivity extends MvpActivity implements ColorChooserDialog.C
                             .backButton(R.string.color_back)
                             .customButton(R.string.color_custom)
                             .presetsButton(R.string.color_presets)
-                            .show();
+                            .show((SettingActivity) getActivity());
                     return true;
                 }
             });
@@ -174,7 +182,7 @@ public class SettingActivity extends MvpActivity implements ColorChooserDialog.C
                             .backButton(R.string.color_back)
                             .customButton(R.string.color_custom)
                             .presetsButton(R.string.color_presets)
-                            .show();
+                            .show((SettingActivity) getActivity());
                     return true;
                 }
             });
@@ -191,7 +199,7 @@ public class SettingActivity extends MvpActivity implements ColorChooserDialog.C
                             .backButton(R.string.color_back)
                             .customButton(R.string.color_custom)
                             .presetsButton(R.string.color_presets)
-                            .show();
+                            .show((SettingActivity) getActivity());
                     return true;
                 }
             });
@@ -232,7 +240,7 @@ public class SettingActivity extends MvpActivity implements ColorChooserDialog.C
                 }
             });
 
-            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
+            if (isShowPendantSnow()) {
                 pendant_snow = (ATEPreference) findPreference("pendant_snow");
                 refreshView();
                 pendant_snow.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -248,7 +256,7 @@ public class SettingActivity extends MvpActivity implements ColorChooserDialog.C
         }
 
         public void refreshView(){
-            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
+            if (isShowPendantSnow()) {
                 String pendant = SPUtils.getString(Constant.SP_PENDANT, null);
                 if(Constant.PENDANT_SNOW.equals(pendant)){
                     pendant_snow.setSummary(R.string.pendant_snow_summary_on);
@@ -262,7 +270,7 @@ public class SettingActivity extends MvpActivity implements ColorChooserDialog.C
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
+        if (isShowPendantSnow()) {
             SettingsFragment frag = (SettingsFragment) getFragmentManager().findFragmentById(R.id.fl_container);
             if (frag != null){
                 frag.refreshView();

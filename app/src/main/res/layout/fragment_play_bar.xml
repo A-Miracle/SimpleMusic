@@ -45,11 +45,11 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
                 android:text="可可音乐"
                 android:tag="text_primary"
                 android:textColor="@color/def_bar_title_color"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:singleLine="true" />
 
             <TextView
                 android:id="@+id/tv_artistName"

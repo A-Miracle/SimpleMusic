@@ -10,12 +10,16 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v7.app.NotificationCompat;
+
+
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.NotificationCompat;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.ctao.baselib.Global;
@@ -137,7 +141,7 @@ final class MediaNotificationManager extends BroadcastReceiver {
         SongInfo songInfo = mService.getCurrentSong();
 
         notificationBuilder
-                .setStyle(new NotificationCompat.MediaStyle()
+                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
                         .setShowActionsInCompactView(
                                 new int[]{0, 1, 2})  // show only play/pause in compact view
                         .setMediaSession(mService.getSessionToken()))
@@ -170,16 +174,16 @@ final class MediaNotificationManager extends BroadcastReceiver {
     private void fetchBitmapFromURLAsync(final String albumId, final NotificationCompat.Builder builder) {
         String bitmapUrl = MediaUtils.getAlbumArtUri(Long.parseLong(albumId)).toString();
         Glide.with(Global.getContext()).load(bitmapUrl)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop()
-                .listener(new RequestListener<String, GlideDrawable>() {
+                .listener(new RequestListener<Drawable>() {
                     @Override
-                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                        return true;
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        return false;
                     }
 
                     @Override
-                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                         Drawable drawable = resource.getCurrent();
                         final Bitmap bitmap = BitmapUtils.getBitmapFromDrawable(drawable);
                         builder.setLargeIcon(bitmap);
@@ -193,7 +197,7 @@ final class MediaNotificationManager extends BroadcastReceiver {
                                 FileUtils.saveBitmapToFile(file, bitmap, Bitmap.CompressFormat.JPEG);
                             }
                         });
-                        return true;
+                        return false;
                     }
                 })
                 .into(DisplayUtils.converDip2px(96), DisplayUtils.converDip2px(96));

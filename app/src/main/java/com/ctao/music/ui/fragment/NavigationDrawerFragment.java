@@ -2,9 +2,7 @@ package com.ctao.music.ui.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.design.internal.NavigationMenuView;
-import android.support.design.widget.NavigationView;
+import androidx.annotation.NonNull;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
@@ -22,6 +20,8 @@ import com.ctao.music.ui.AboutActivity;
 import com.ctao.music.ui.SettingActivity;
 import com.ctao.music.ui.base.MvpFragment;
 import com.ctao.music.utils.ATEUtils;
+import com.google.android.material.internal.NavigationMenuView;
+import com.google.android.material.navigation.NavigationView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -33,7 +33,8 @@ import butterknife.BindView;
  */
 public class NavigationDrawerFragment extends MvpFragment implements NavigationView.OnNavigationItemSelectedListener {
     @BindView(R.id.ll_head) LinearLayout ll_head;
-    @BindView(R.id.navigation_view) NavigationView navigation_view;
+    @BindView(R.id.navigation_view)
+    NavigationView navigation_view;
     NavigationMenuView menuView;
 
     @Override

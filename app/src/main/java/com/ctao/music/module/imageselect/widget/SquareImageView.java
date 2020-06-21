@@ -2,11 +2,14 @@ package com.ctao.music.module.imageselect.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 /**
  * Created by A Miracle on 2016/10/28.
  */
-public class SquareImageView extends android.support.v7.widget.AppCompatImageView {
+public class SquareImageView extends AppCompatImageView {
     public SquareImageView(Context context) {
         super(context);
     }
@@ -18,7 +21,7 @@ public class SquareImageView extends android.support.v7.widget.AppCompatImageVie
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthMode = View.MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         if (MeasureSpec.EXACTLY == widthMode) {
             setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());

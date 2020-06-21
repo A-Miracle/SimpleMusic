@@ -6,9 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.net.Uri;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +14,10 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.appthemeengine.ATE;
 import com.afollestad.appthemeengine.Config;
@@ -65,7 +66,8 @@ public class SkinFragment extends CommonFragment implements View.OnClickListener
     private static final int REQUEST_CORP = 0x321;
 
     @BindView(R.id.ll_head) LinearLayout ll_head;
-    @BindView(R.id.rv_skin) RecyclerView rv_skin;
+    @BindView(R.id.rv_skin)
+    RecyclerView rv_skin;
     @BindView(R.id.sb_blurry) SeekBar sb_blurry;
     @BindView(R.id.cb_skin) CheckBox cb_skin;
 

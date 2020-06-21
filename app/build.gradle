@@ -65,6 +65,11 @@ android {
             resValue "string", "fileprovider", "com.ctao.music.fileprovider"
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 def buildTime(String format) {
@@ -74,43 +79,37 @@ def buildTime(String format) {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
-    compile 'com.android.support:appcompat-v7:' + rootProject.ext.supportLibraryVersion
-    compile 'com.android.support:support-v4:' + rootProject.ext.supportLibraryVersion
-    testCompile 'junit:junit:4.12'
-    compile project(':baselib')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.media:media:1.1.0'
+
+    api project(':baselib')
 
     // The third party
-    compile 'org.greenrobot:eventbus:3.0.0' //Proguard
-    compile 'com.jakewharton:butterknife:8.6.0' //No Proguard
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
-    compile 'com.afollestad.material-dialogs:core:0.9.4.5' //No Proguard
-    compile 'com.afollestad.material-dialogs:commons:0.9.4.5'
-    compile 'com.github.bumptech.glide:glide:3.7.0' //Proguard
-//    compile 'com.github.bumptech.glide:glide:4.0.0-RC1'
-//    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC1'
-//    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-//    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
+    implementation 'org.greenrobot:eventbus:3.2.0' //Proguard
+
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1' //No Proguard
+    implementation 'com.github.bumptech.glide:glide:4.11.0' //No Proguard
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     //retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.3.0' //Proguard
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0' //Proguard
-    compile 'com.squareup.retrofit2:converter-scalars:2.3.0' //Proguard
-
-    compile 'com.github.yalantis:ucrop:2.2.1' //Proguard
-    compile 'com.squareup.picasso:picasso:2.5.2' //Proguard
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0' //Proguard
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0' //Proguard
+    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0' //Proguard
+//
+    implementation 'com.github.yalantis:ucrop:2.2.5' //Proguard
+    implementation 'com.squareup.picasso:picasso:2.5.2' //Proguard
 
     //Proguard
-    compile 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
-    compile 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+    implementation 'com.tencent.bugly:crashreport:3.2.3' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    implementation 'com.tencent.bugly:nativecrashreport:3.7.3' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
 
-    compile("com.github.hotchemi:permissionsdispatcher:3.0.1") {
-        // if you don't use android.app.Fragment you can exclude support for them
-        exclude module: "support-v13"
-    }
-    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.0.1"
+    implementation "org.permissionsdispatcher:permissionsdispatcher:4.7.0"
+    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:4.7.0"
 }

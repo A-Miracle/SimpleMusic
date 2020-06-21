@@ -98,6 +98,7 @@ public class MediaPlay implements IPlay<SongInfo>{
     @Override
     public void stop() {
         switch (getState()){
+            case STATE_PREPARED:
             case STATE_PLAYING:
             case STATE_PAUSED:
             case STATE_STOPPED:

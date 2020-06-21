@@ -3,8 +3,8 @@ package com.ctao.music.ui.common;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 import com.afollestad.materialdialogs.Theme;
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
@@ -60,7 +60,7 @@ public final class ColorChooserActivity extends MvpActivity implements ColorChoo
                 .presetsButton(R.string.color_presets)
                 .preselect(preselectColor != -1 ? preselectColor : ResourcesUtils.getValueOfColorAttr(this, -1, R.attr.colorPrimary))  // optionally preselects a color
                 .dynamicButtonColor(true) // button是否根据颜色变换
-                .show();
+                .show(this);
     }
 
     @Override
